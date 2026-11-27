@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Application architecture
+- Keep the prototype catalogue, image pointers, episode generation, and metadata helper in a browser-safe local catalogue module so every page uses consistent sample data.
+- Use TanStack file routes with a shared application shell and in-memory profile/list context; the intentionally disconnected prototype does not persist accounts or billing.
+- Put cinema visual styles and tokens in the global stylesheet and expose shared Button variants so all screens follow the same theme.

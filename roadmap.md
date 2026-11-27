@@ -1,0 +1,3 @@
+- [ ] Create KATHAYAN visual system and documentary imagery.
+- [ ] Build all catalogue, detail, player, note, search, list, and profile pages.
+- [ ] Verify navigation, saving, player controls, billing dialog, and mobile layout.
