@@ -33,3 +33,4 @@ use the editor.
 - Keep the prototype catalogue, image pointers, episode generation, and metadata helper in a browser-safe local catalogue module so every page uses consistent sample data.
 - Use TanStack file routes with a shared application shell and in-memory profile/list context; the intentionally disconnected prototype does not persist accounts or billing.
 - Put cinema visual styles and tokens in the global stylesheet and expose shared Button variants so all screens follow the same theme.
+- Render the sample admin workspace in its own responsive shell at /admin, with session-only editorial edits; it exposes no real administrative permissions or private data.

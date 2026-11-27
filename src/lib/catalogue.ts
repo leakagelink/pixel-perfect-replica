@@ -1,45 +1,442 @@
-import nalandaAsset from '@/assets/nalanda.asset.json';
-import konarkAsset from '@/assets/konark.asset.json';
-import himalayaAsset from '@/assets/himalaya.asset.json';
-import bharatAsset from '@/assets/bharat.asset.json';
-import manuscriptAsset from '@/assets/manuscript.asset.json';
-import craftAsset from '@/assets/craft.asset.json';
-import janpathAsset from '@/assets/janpath.asset.json';
-export const images = { nalanda: nalandaAsset.url, konark: konarkAsset.url, himalaya: himalayaAsset.url, bharat: bharatAsset.url, manuscript: manuscriptAsset.url, craft: craftAsset.url, janpath: janpathAsset.url };
-export type Title = { id:string; title:string; image:string; description:string; category:string; kind:'Series'|'Film'|'Documentary'|'Short'; duration:string; year:number; seasons:number };
-export const flagships:Title[] = [
- {id:'bharat',title:'BHARAT',image:images.bharat,description:'Civilisation, people, power',category:'History',kind:'Series',duration:'4 episodes',year:2026,seasons:2},
- {id:'gyaanbhoomi',title:'GYAANBHOOMI',image:images.manuscript,description:'Knowledge, texts, ideas',category:'Knowledge',kind:'Series',duration:'4 episodes',year:2026,seasons:1},
- {id:'virasat',title:'VIRASAT',image:images.konark,description:'Heritage, craft, sacred landscapes',category:'History',kind:'Series',duration:'4 episodes',year:2026,seasons:1},
- {id:'anveshan',title:'ANVESHAN',image:images.himalaya,description:'Science, nature, exploration',category:'Nature',kind:'Series',duration:'4 episodes',year:2026,seasons:1},
- {id:'janpath',title:'JANPATH',image:images.janpath,description:'Streets, work, everyday India',category:'Society',kind:'Series',duration:'4 episodes',year:2026,seasons:1},
+import nalandaAsset from "@/assets/nalanda.asset.json";
+import konarkAsset from "@/assets/konark.asset.json";
+import himalayaAsset from "@/assets/himalaya.asset.json";
+import bharatAsset from "@/assets/bharat.asset.json";
+import manuscriptAsset from "@/assets/manuscript.asset.json";
+import craftAsset from "@/assets/craft.asset.json";
+import janpathAsset from "@/assets/janpath.asset.json";
+import ancientAsset from "@/assets/ancient.asset.json";
+import colonialAsset from "@/assets/colonial.asset.json";
+import freedomAsset from "@/assets/freedom.asset.json";
+import modernAsset from "@/assets/modern.asset.json";
+import wildlifeAsset from "@/assets/wildlife.asset.json";
+import portraitAsset from "@/assets/portrait.asset.json";
+export const images = {
+  nalanda: nalandaAsset.url,
+  konark: konarkAsset.url,
+  himalaya: himalayaAsset.url,
+  bharat: bharatAsset.url,
+  manuscript: manuscriptAsset.url,
+  craft: craftAsset.url,
+  janpath: janpathAsset.url,
+  ancient: ancientAsset.url,
+  colonial: colonialAsset.url,
+  freedom: freedomAsset.url,
+  modern: modernAsset.url,
+  wildlife: wildlifeAsset.url,
+  portrait: portraitAsset.url,
+};
+export type Title = {
+  id: string;
+  title: string;
+  image: string;
+  description: string;
+  category: string;
+  kind: "Series" | "Film" | "Documentary" | "Short";
+  duration: string;
+  year: number;
+  seasons: number;
+};
+export const flagships: Title[] = [
+  {
+    id: "bharat",
+    title: "BHARAT",
+    image: images.bharat,
+    description: "Civilisation, people, power",
+    category: "History",
+    kind: "Series",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 2,
+  },
+  {
+    id: "gyaanbhoomi",
+    title: "GYAANBHOOMI",
+    image: images.manuscript,
+    description: "Knowledge, texts, ideas",
+    category: "Knowledge",
+    kind: "Series",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 1,
+  },
+  {
+    id: "virasat",
+    title: "VIRASAT",
+    image: images.konark,
+    description: "Heritage, craft, sacred landscapes",
+    category: "History",
+    kind: "Series",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 1,
+  },
+  {
+    id: "anveshan",
+    title: "ANVESHAN",
+    image: images.himalaya,
+    description: "Science, nature, exploration",
+    category: "Nature",
+    kind: "Series",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 1,
+  },
+  {
+    id: "janpath",
+    title: "JANPATH",
+    image: images.portrait,
+    description: "Streets, work, everyday India",
+    category: "Society",
+    kind: "Series",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 1,
+  },
 ];
-export const titles:Title[] = [
- {id:'nalanda',title:'Nalanda',image:images.nalanda,description:'A university of the ancient world.',category:'Knowledge',kind:'Documentary',duration:'4 episodes',year:2026,seasons:1},
- {id:'konark',title:'Konark',image:images.konark,description:'The sun temple.',category:'History',kind:'Film',duration:'52 min',year:2026,seasons:0},
- {id:'high-himalaya',title:'High Himalaya',image:images.himalaya,description:'Science, people, a living mountain.',category:'Nature',kind:'Series',duration:'4 episodes',year:2026,seasons:1},
- {id:'ashoka',title:'Ashoka',image:images.bharat,description:'An emperor. A turning point.',category:'History',kind:'Series',duration:'4 episodes',year:2026,seasons:1},
- {id:'the-marathas',title:'The Marathas',image:images.konark,description:'Beyond the fort walls.',category:'History',kind:'Series',duration:'4 episodes',year:2026,seasons:1},
- {id:'ancient-bharat',title:'Ancient Bharat',image:images.bharat,description:'The first chapters',category:'History',kind:'Documentary',duration:'48 min',year:2026,seasons:0},
- {id:'colonial-era',title:'Colonial Era',image:images.konark,description:'Empire & resistance',category:'History',kind:'Documentary',duration:'54 min',year:2026,seasons:0},
- {id:'freedom-struggle',title:'Freedom Struggle',image:images.janpath,description:'A nation finds its voice',category:'History',kind:'Documentary',duration:'56 min',year:2026,seasons:0},
- {id:'modern-bharat',title:'Modern Bharat',image:images.craft,description:'A republic in motion',category:'Society',kind:'Documentary',duration:'47 min',year:2026,seasons:0},
- {id:'wildlife-expeditions',title:'Wildlife Expeditions',image:images.himalaya,description:'Into the living wild',category:'Nature',kind:'Film',duration:'42 min',year:2026,seasons:0},
- {id:'hands-of-bharat',title:'Hands of Bharat',image:images.craft,description:'A tradition, thread by thread',category:'Society',kind:'Short',duration:'3 min',year:2026,seasons:0},
- {id:'river-at-dawn',title:'A River at Dawn',image:images.janpath,description:'Life along the Ganga',category:'Society',kind:'Short',duration:'2 min',year:2026,seasons:0},
- {id:'written-in-stone',title:'Written in Stone',image:images.konark,description:'The art of Konark',category:'History',kind:'Short',duration:'4 min',year:2026,seasons:0},
- {id:'above-the-clouds',title:'Above the Clouds',image:images.himalaya,description:'A Himalayan morning',category:'Nature',kind:'Short',duration:'3 min',year:2026,seasons:0},
- {id:'a-page-of-history',title:'A Page of History',image:images.manuscript,description:'Stories in a manuscript',category:'Knowledge',kind:'Short',duration:'2 min',year:2026,seasons:0},
- {id:'silent-courtyards',title:'Silent Courtyards',image:images.nalanda,description:'Listening to Nalanda',category:'Knowledge',kind:'Short',duration:'3 min',year:2026,seasons:0},
+export const titles: Title[] = [
+  {
+    id: "nalanda",
+    title: "Nalanda",
+    image: images.nalanda,
+    description: "A university of the ancient world.",
+    category: "Knowledge",
+    kind: "Documentary",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 1,
+  },
+  {
+    id: "konark",
+    title: "Konark",
+    image: images.konark,
+    description: "The sun temple.",
+    category: "History",
+    kind: "Film",
+    duration: "52 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "high-himalaya",
+    title: "High Himalaya",
+    image: images.himalaya,
+    description: "Science, people, a living mountain.",
+    category: "Nature",
+    kind: "Series",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 1,
+  },
+  {
+    id: "ashoka",
+    title: "Ashoka",
+    image: images.bharat,
+    description: "An emperor. A turning point.",
+    category: "History",
+    kind: "Series",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 1,
+  },
+  {
+    id: "the-marathas",
+    title: "The Marathas",
+    image: images.konark,
+    description: "Beyond the fort walls.",
+    category: "History",
+    kind: "Series",
+    duration: "4 episodes",
+    year: 2026,
+    seasons: 1,
+  },
+  {
+    id: "ancient-bharat",
+    title: "Ancient Bharat",
+    image: images.ancient,
+    description: "The first chapters",
+    category: "History",
+    kind: "Documentary",
+    duration: "48 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "colonial-era",
+    title: "Colonial Era",
+    image: images.colonial,
+    description: "Empire & resistance",
+    category: "History",
+    kind: "Documentary",
+    duration: "54 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "freedom-struggle",
+    title: "Freedom Struggle",
+    image: images.freedom,
+    description: "A nation finds its voice",
+    category: "History",
+    kind: "Documentary",
+    duration: "56 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "modern-bharat",
+    title: "Modern Bharat",
+    image: images.modern,
+    description: "A republic in motion",
+    category: "Society",
+    kind: "Documentary",
+    duration: "47 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "wildlife-expeditions",
+    title: "Wildlife Expeditions",
+    image: images.wildlife,
+    description: "Into the living wild",
+    category: "Nature",
+    kind: "Film",
+    duration: "42 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "hands-of-bharat",
+    title: "Hands of Bharat",
+    image: images.craft,
+    description: "A tradition, thread by thread",
+    category: "Society",
+    kind: "Short",
+    duration: "3 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "river-at-dawn",
+    title: "A River at Dawn",
+    image: images.janpath,
+    description: "Life along the Ganga",
+    category: "Society",
+    kind: "Short",
+    duration: "2 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "written-in-stone",
+    title: "Written in Stone",
+    image: images.konark,
+    description: "The art of Konark",
+    category: "History",
+    kind: "Short",
+    duration: "4 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "above-the-clouds",
+    title: "Above the Clouds",
+    image: images.himalaya,
+    description: "A Himalayan morning",
+    category: "Nature",
+    kind: "Short",
+    duration: "3 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "a-page-of-history",
+    title: "A Page of History",
+    image: images.manuscript,
+    description: "Stories in a manuscript",
+    category: "Knowledge",
+    kind: "Short",
+    duration: "2 min",
+    year: 2026,
+    seasons: 0,
+  },
+  {
+    id: "silent-courtyards",
+    title: "Silent Courtyards",
+    image: images.nalanda,
+    description: "Listening to Nalanda",
+    category: "Knowledge",
+    kind: "Short",
+    duration: "3 min",
+    year: 2026,
+    seasons: 0,
+  },
 ];
-export const allTitles = [...flagships,...titles];
-export const findTitle = (id:string) => allTitles.find(t=>t.id===id);
-export const heroes = [ {id:'nalanda',kicker:'A KATHAYAN ORIGINAL',title:'NALANDA',subtitle:'A university of the ancient world.',meta:'Documentary · 4 episodes',image:images.nalanda}, {id:'konark',kicker:'VIRASAT',title:'KONARK',subtitle:'The sun temple.',meta:'Documentary film',image:images.konark}, {id:'high-himalaya',kicker:'ANVESHAN',title:'HIGH HIMALAYA',subtitle:'Science, people, a living mountain.',meta:'Series · Season 1',image:images.himalaya} ];
-export const originals = ['ancient-bharat','colonial-era','freedom-struggle','modern-bharat','high-himalaya','wildlife-expeditions'].flatMap(id=>{const t=findTitle(id);return t?[t]:[]});
-export const collections = [ {name:'Ancient Bharat',category:'History',image:images.bharat}, {name:'Art & Culture',category:'Society',image:images.konark}, {name:'Science & Ideas',category:'Knowledge',image:images.manuscript}, {name:'People & Society',category:'Society',image:images.janpath}, {name:'Nature & Land',category:'Nature',image:images.himalaya} ];
-export const notes = [ {id:'arthashastra',title:'The Arthashastra',label:'RESEARCH NOTE',image:images.manuscript,description:'Statecraft, society, and the questions of governance.',body:'The Arthashastra brings together discussions of administration, economics and political life. Attributed to Kautilya, its textual history reflects multiple layers of composition and transmission. Reading it as a historical source requires attention to the difference between an ideal prescription and everyday practice.',source:'Kautilya, Arthashastra; R. P. Kangle, The Kautiliya Arthasastra.'}, {id:'indian-knowledge-systems',title:'Indian Knowledge Systems',label:'RESEARCH NOTE',image:images.nalanda,description:'Learning across disciplines and centuries.',body:'Knowledge in the subcontinent developed through a range of institutions, languages and practices. Monastic universities, scholarly households and artisan communities all participated in the preservation and exchange of ideas. Nalanda offers one window into that wider landscape, rather than a complete account of it.',source:'Archaeological Survey of India, Nalanda site documentation; UNESCO World Heritage Centre.'}, {id:'trade-routes',title:'Trade Routes of Bharat',label:'FIELD NOTE',image:images.janpath,description:'The movement of goods, people, and ideas.',body:'Rivers, mountain passes and coastal ports connected communities across the subcontinent. Trade carried more than material goods: artistic forms, religious traditions and practical knowledge travelled alongside merchants. Archaeological evidence must be considered together with inscriptions and textual accounts.',source:'UNESCO Silk Roads Programme; Archaeological Survey of India.'}, {id:'jantar-mantar',title:'Jantar Mantar',label:'CITATION NOTE',image:images.konark,description:'Observing the sky, measuring time.',body:'The monumental instruments of Jantar Mantar were built to support astronomical observation. Their forms make the relationship between architecture and measurement visible. Observations were interpreted within a scholarly tradition that drew on several systems of astronomical knowledge.',source:'UNESCO World Heritage Centre, The Jantar Mantar, Jaipur.'} ];
-export function episodesFor(id:string,season=1) { const title=findTitle(id); const names=id==='nalanda'?['A World of Learning','Inside the Mahavihara','Ideas Without Borders','The Living Legacy']:id==='bharat'?['The First Civilisations','Kingdoms & Crossroads','People, Power & Belief','A Continuing Story']:['The Beginning','A Closer Look','Across the Landscape','A Living Legacy']; return names.map((name,i)=>({number:i+1,title:name,duration:42+i*3,image:title?.image??images.nalanda,synopsis:[ 'Follow the traces of a world shaped by people, place, and possibility.','Explore the spaces and everyday lives behind the larger story.','Discover how communities exchanged knowledge across boundaries.','Consider the echoes of the past in the world around us.' ][i]??'',season})); }
-export const plans = [ {name:'Free',price:'₹0',features:['Selected films & shorts','Knowledge notes','One screen']}, {name:'Premium',price:'₹199 / month',features:['All sample originals','Full HD viewing','One screen']}, {name:'Family',price:'₹349 / month',features:['Everything in Premium','Three profiles','Three screens']}, {name:'Institutional',price:'On request',features:['Learning & research access','Group viewing','Institutional support']} ];
-export function toggleSaved(ids:string[],id:string){return ids.includes(id)?ids.filter(x=>x!==id):[...ids,id]}
-export function searchCatalogue(query:string){const q=query.trim().toLowerCase();return {series:allTitles.filter(t=>t.kind==='Series'&&`${t.title} ${t.description}`.toLowerCase().includes(q)),films:allTitles.filter(t=>t.kind!=='Series'&&t.kind!=='Short'&&`${t.title} ${t.description}`.toLowerCase().includes(q)),notes:notes.filter(n=>`${n.title} ${n.description}`.toLowerCase().includes(q))}}
-export const pageHead=(title:string,description:string)=>({meta:[{title:`${title} · KATHAYAN`},{name:'description',content:description},{property:'og:title',content:`${title} · KATHAYAN`},{property:'og:description',content:description},{property:'og:type',content:'website'},{name:'twitter:card',content:'summary_large_image'}]});
+export const allTitles = [...flagships, ...titles];
+export const findTitle = (id: string) => allTitles.find((t) => t.id === id);
+export const heroes = [
+  {
+    id: "nalanda",
+    kicker: "A KATHAYAN ORIGINAL",
+    title: "NALANDA",
+    subtitle: "A university of the ancient world.",
+    meta: "Documentary · 4 episodes",
+    image: images.nalanda,
+  },
+  {
+    id: "konark",
+    kicker: "VIRASAT",
+    title: "KONARK",
+    subtitle: "The sun temple.",
+    meta: "Documentary film",
+    image: images.konark,
+  },
+  {
+    id: "high-himalaya",
+    kicker: "ANVESHAN",
+    title: "HIGH HIMALAYA",
+    subtitle: "Science, people, a living mountain.",
+    meta: "Series · Season 1",
+    image: images.himalaya,
+  },
+];
+export const originals = [
+  "ancient-bharat",
+  "colonial-era",
+  "freedom-struggle",
+  "modern-bharat",
+  "high-himalaya",
+  "wildlife-expeditions",
+].flatMap((id) => {
+  const t = findTitle(id);
+  return t ? [t] : [];
+});
+export const collections = [
+  { name: "Ancient Bharat", category: "History", image: images.bharat },
+  { name: "Art & Culture", category: "Society", image: images.konark },
+  { name: "Science & Ideas", category: "Knowledge", image: images.manuscript },
+  { name: "People & Society", category: "Society", image: images.janpath },
+  { name: "Nature & Land", category: "Nature", image: images.himalaya },
+];
+export const notes = [
+  {
+    id: "arthashastra",
+    title: "The Arthashastra",
+    label: "RESEARCH NOTE",
+    image: images.manuscript,
+    description: "Statecraft, society, and the questions of governance.",
+    body: "The Arthashastra brings together discussions of administration, economics and political life. Attributed to Kautilya, its textual history reflects multiple layers of composition and transmission. Reading it as a historical source requires attention to the difference between an ideal prescription and everyday practice.",
+    source: "Kautilya, Arthashastra; R. P. Kangle, The Kautiliya Arthasastra.",
+  },
+  {
+    id: "indian-knowledge-systems",
+    title: "Indian Knowledge Systems",
+    label: "RESEARCH NOTE",
+    image: images.nalanda,
+    description: "Learning across disciplines and centuries.",
+    body: "Knowledge in the subcontinent developed through a range of institutions, languages and practices. Monastic universities, scholarly households and artisan communities all participated in the preservation and exchange of ideas. Nalanda offers one window into that wider landscape, rather than a complete account of it.",
+    source:
+      "Archaeological Survey of India, Nalanda site documentation; UNESCO World Heritage Centre.",
+  },
+  {
+    id: "trade-routes",
+    title: "Trade Routes of Bharat",
+    label: "FIELD NOTE",
+    image: images.janpath,
+    description: "The movement of goods, people, and ideas.",
+    body: "Rivers, mountain passes and coastal ports connected communities across the subcontinent. Trade carried more than material goods: artistic forms, religious traditions and practical knowledge travelled alongside merchants. Archaeological evidence must be considered together with inscriptions and textual accounts.",
+    source: "UNESCO Silk Roads Programme; Archaeological Survey of India.",
+  },
+  {
+    id: "jantar-mantar",
+    title: "Jantar Mantar",
+    label: "CITATION NOTE",
+    image: images.konark,
+    description: "Observing the sky, measuring time.",
+    body: "The monumental instruments of Jantar Mantar were built to support astronomical observation. Their forms make the relationship between architecture and measurement visible. Observations were interpreted within a scholarly tradition that drew on several systems of astronomical knowledge.",
+    source: "UNESCO World Heritage Centre, The Jantar Mantar, Jaipur.",
+  },
+];
+export function episodesFor(id: string, season = 1) {
+  const title = findTitle(id);
+  const names =
+    id === "nalanda"
+      ? [
+          "A World of Learning",
+          "Inside the Mahavihara",
+          "Ideas Without Borders",
+          "The Living Legacy",
+        ]
+      : id === "bharat"
+        ? [
+            "The First Civilisations",
+            "Kingdoms & Crossroads",
+            "People, Power & Belief",
+            "A Continuing Story",
+          ]
+        : ["The Beginning", "A Closer Look", "Across the Landscape", "A Living Legacy"];
+  return names.map((name, i) => ({
+    number: i + 1,
+    title: name,
+    duration: 42 + i * 3,
+    image: title?.image ?? images.nalanda,
+    synopsis:
+      [
+        "Follow the traces of a world shaped by people, place, and possibility.",
+        "Explore the spaces and everyday lives behind the larger story.",
+        "Discover how communities exchanged knowledge across boundaries.",
+        "Consider the echoes of the past in the world around us.",
+      ][i] ?? "",
+    season,
+  }));
+}
+export const plans = [
+  {
+    name: "Free",
+    price: "₹0",
+    features: ["Selected films & shorts", "Knowledge notes", "One screen"],
+  },
+  {
+    name: "Premium",
+    price: "₹199 / month",
+    features: ["All sample originals", "Full HD viewing", "One screen"],
+  },
+  {
+    name: "Family",
+    price: "₹349 / month",
+    features: ["Everything in Premium", "Three profiles", "Three screens"],
+  },
+  {
+    name: "Institutional",
+    price: "On request",
+    features: ["Learning & research access", "Group viewing", "Institutional support"],
+  },
+];
+export function toggleSaved(ids: string[], id: string) {
+  return ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
+}
+export function searchCatalogue(query: string) {
+  const q = query.trim().toLowerCase();
+  return {
+    series: allTitles.filter(
+      (t) => t.kind === "Series" && `${t.title} ${t.description}`.toLowerCase().includes(q),
+    ),
+    films: allTitles.filter(
+      (t) =>
+        t.kind !== "Series" &&
+        t.kind !== "Short" &&
+        `${t.title} ${t.description}`.toLowerCase().includes(q),
+    ),
+    notes: notes.filter((n) => `${n.title} ${n.description}`.toLowerCase().includes(q)),
+  };
+}
+export const pageHead = (title: string, description: string) => ({
+  meta: [
+    { title: `${title} · KATHAYAN` },
+    { name: "description", content: description },
+    { property: "og:title", content: `${title} · KATHAYAN` },
+    { property: "og:description", content: description },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ],
+});

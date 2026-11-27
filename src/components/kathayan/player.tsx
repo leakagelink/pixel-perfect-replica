@@ -1,10 +1,267 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from '@tanstack/react-router';
-import { Play, Pause, RotateCcw, RotateCw, Volume2, VolumeX, Maximize, Subtitles, ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { findTitle, episodesFor } from '@/lib/catalogue';
-import { EmptyState } from './shell';
-import { EpisodeRows } from './detail';
-import { NoteRail } from './home';
-const time=(s:number)=>`${Math.floor(s/60).toString().padStart(2,'0')}:${Math.floor(s%60).toString().padStart(2,'0')}`;
-export function PlayerPage({id,episode=1,season=1,trailer=false}:{id:string;episode?:number;season?:number;trailer?:boolean}){const title=findTitle(id);const ep=episodesFor(id,season)[episode-1]??episodesFor(id,season)[0];const [playing,setPlaying]=useState(false);const [position,setPosition]=useState(0);const [volume,setVolume]=useState(75);const [tab,setTab]=useState('Episodes');const [subtitles,setSubtitles]=useState(false);const [audio,setAudio]=useState('Hindi');const [quality,setQuality]=useState('Auto');const stage=useRef<HTMLDivElement>(null);const duration=trailer?120:title?.kind==='Short'?180:(ep?.duration??42)*60;useEffect(()=>{setPosition(0);setPlaying(false)},[id,episode,season,trailer]);useEffect(()=>{if(!playing)return;const timer=setInterval(()=>setPosition(p=>Math.min(duration,p+1)),1000);return()=>clearInterval(timer)},[playing,duration]);useEffect(()=>{if(position>=duration)setPlaying(false)},[position,duration]);if(!title||!ep)return <EmptyState title="This story is unavailable" description="Choose another title from the sample catalogue." action/>;const fullscreen=async()=>{if(!stage.current)return;try{if(document.fullscreenElement)await document.exitFullscreen();else await stage.current.requestFullscreen()}catch{}};return <><Button asChild variant="icon" className="mb-4 px-0"><Link to="/title/$id" params={{id}}><ArrowLeft size={16}/>Back to {title.title}</Link></Button><div ref={stage} className="player-stage" aria-label="Sample cinema player"><img src={title.image} alt={title.title}/><div className="player-center"><Button variant="icon" size="icon" title={playing?'Pause':'Play'} aria-label={playing?'Pause':'Play'} onClick={()=>setPlaying(!playing)}>{playing?<Pause size={28}/>:<Play size={28} fill="currentColor"/>}</Button></div><span className="absolute left-5 top-4 eyebrow">KATHAYAN · {trailer?'SAMPLE TRAILER':'SAMPLE FRAME'}</span>{subtitles&&<div className="absolute bottom-24 left-0 right-0 text-center text-sm"><span className="bg-background/80 p-2 rounded">{audio==='Hindi'?'ज्ञान की यात्रा जारी है।':'The journey of knowledge continues.'}</span></div>}<div className="player-controls"><input type="range" aria-label="Playback progress" min={0} max={duration} value={position} onChange={e=>setPosition(Number(e.target.value))}/><div className="control-row"><div className="control-group"><Button variant="icon" size="icon" aria-label={playing?'Pause playback':'Resume playback'} title={playing?'Pause':'Play'} onClick={()=>setPlaying(!playing)}>{playing?<Pause/>:<Play/>}</Button><Button variant="icon" size="icon" aria-label="Back 10 seconds" title="Back 10 seconds" onClick={()=>setPosition(p=>Math.max(0,p-10))}><RotateCcw/></Button><Button variant="icon" size="icon" aria-label="Forward 10 seconds" title="Forward 10 seconds" onClick={()=>setPosition(p=>Math.min(duration,p+10))}><RotateCw/></Button><span aria-live="off">{time(position)} / {time(duration)}</span><Button className="volume-icon" variant="icon" size="icon" aria-label={volume?'Mute':'Unmute'} title={volume?'Mute':'Unmute'} onClick={()=>setVolume(v=>v?0:75)}>{volume?<Volume2/>:<VolumeX/>}</Button><input className="volume-slider" type="range" min={0} max={100} value={volume} aria-label="Volume" onChange={e=>setVolume(Number(e.target.value))}/></div><div className="control-group"><select aria-label="Video quality" value={quality} onChange={e=>setQuality(e.target.value)}><option>Auto</option><option>1080p</option><option>720p</option></select><Button variant="icon" size="icon" aria-label="Subtitles" title="Subtitles" aria-pressed={subtitles} className={subtitles?'text-primary':''} onClick={()=>setSubtitles(!subtitles)}><Subtitles/></Button><select aria-label="Audio track" value={audio} onChange={e=>setAudio(e.target.value)}><option>Hindi</option><option>English</option></select><Button variant="icon" size="icon" title="Fullscreen" aria-label="Fullscreen" onClick={fullscreen}><Maximize/></Button></div></div></div></div><div className="player-info"><div><div className="eyebrow">{title.title} · {trailer?'TRAILER':`S${season} E${episode}`}</div><h1 className="text-2xl font-serif mt-2 mb-2">{trailer?`${title.title} — Trailer`:ep.title}</h1><p className="meta">{ep.synopsis}</p><p className="meta mt-3">Sample playback · No video stream connected</p></div>{episode<4&&!trailer&&title.seasons>0&&<Link to="/watch/$id" params={{id}} search={{episode:episode+1,season,trailer:false}} className="next-episode"><img src={title.image} alt="Next episode"/><div><div className="eyebrow">UP NEXT</div><p className="text-xs mt-2">{episodesFor(id,season)[episode]?.title}</p><span className="meta">Play next episode →</span></div></Link>}</div><div className="filter-row" role="tablist" aria-label="Player information">{['Episodes','Notes'].map(t=><Button variant="glass" key={t} className={tab===t?'active':''} role="tab" aria-selected={tab===t} onClick={()=>setTab(t)}>{t}</Button>)}</div><div role="tabpanel">{tab==='Episodes'?(title.seasons>0?<EpisodeRows id={id} season={season}/>:<EmptyState title="A complete film" description="This title has no additional episodes."/>):<NoteRail/>}</div></>}
+import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import {
+  Play,
+  Pause,
+  RotateCcw,
+  RotateCw,
+  Volume2,
+  VolumeX,
+  Maximize,
+  Subtitles,
+  ArrowLeft,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { findTitle, episodesFor } from "@/lib/catalogue";
+import { EmptyState } from "./shell";
+import { EpisodeRows } from "./detail";
+import { NoteRail } from "./home";
+const time = (s: number) =>
+  `${Math.floor(s / 60)
+    .toString()
+    .padStart(2, "0")}:${Math.floor(s % 60)
+    .toString()
+    .padStart(2, "0")}`;
+export function PlayerPage({
+  id,
+  episode = 1,
+  season = 1,
+  trailer = false,
+}: {
+  id: string;
+  episode?: number;
+  season?: number;
+  trailer?: boolean;
+}) {
+  const title = findTitle(id);
+  const ep = episodesFor(id, season)[episode - 1] ?? episodesFor(id, season)[0];
+  const [playing, setPlaying] = useState(false);
+  const [position, setPosition] = useState(0);
+  const [volume, setVolume] = useState(75);
+  const [tab, setTab] = useState("Episodes");
+  const [subtitles, setSubtitles] = useState(false);
+  const [audio, setAudio] = useState("Hindi");
+  const [quality, setQuality] = useState("Auto");
+  const stage = useRef<HTMLDivElement>(null);
+  const duration = trailer ? 120 : title?.kind === "Short" ? 180 : (ep?.duration ?? 42) * 60;
+  useEffect(() => {
+    setPosition(0);
+    setPlaying(false);
+  }, [id, episode, season, trailer]);
+  useEffect(() => {
+    if (!playing) return;
+    const timer = setInterval(() => setPosition((p) => Math.min(duration, p + 1)), 1000);
+    return () => clearInterval(timer);
+  }, [playing, duration]);
+  useEffect(() => {
+    if (position >= duration) setPlaying(false);
+  }, [position, duration]);
+  if (!title || !ep)
+    return (
+      <EmptyState
+        title="This story is unavailable"
+        description="Choose another title from the sample catalogue."
+        action
+      />
+    );
+  const fullscreen = async () => {
+    if (!stage.current) return;
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await stage.current.requestFullscreen();
+    } catch {}
+  };
+  return (
+    <>
+      <Button asChild variant="icon" className="mb-4 px-0">
+        <Link to="/title/$id" params={{ id }}>
+          <ArrowLeft size={16} />
+          Back to {title.title}
+        </Link>
+      </Button>
+      <div ref={stage} className="player-stage" aria-label="Sample cinema player">
+        <img src={title.image} alt={title.title} />
+        <div className="player-center">
+          <Button
+            variant="icon"
+            size="icon"
+            title={playing ? "Pause" : "Play"}
+            aria-label={playing ? "Pause" : "Play"}
+            onClick={() => setPlaying(!playing)}
+          >
+            {playing ? <Pause size={28} /> : <Play size={28} fill="currentColor" />}
+          </Button>
+        </div>
+        <span className="absolute left-5 top-4 eyebrow">
+          KATHAYAN · {trailer ? "SAMPLE TRAILER" : "SAMPLE FRAME"}
+        </span>
+        {subtitles && (
+          <div className="absolute bottom-24 left-0 right-0 text-center text-sm">
+            <span className="bg-background/80 p-2 rounded">
+              {audio === "Hindi"
+                ? "ज्ञान की यात्रा जारी है।"
+                : "The journey of knowledge continues."}
+            </span>
+          </div>
+        )}
+        <div className="player-controls">
+          <input
+            type="range"
+            aria-label="Playback progress"
+            min={0}
+            max={duration}
+            value={position}
+            onChange={(e) => setPosition(Number(e.target.value))}
+          />
+          <div className="control-row">
+            <div className="control-group">
+              <Button
+                variant="icon"
+                size="icon"
+                aria-label={playing ? "Pause playback" : "Resume playback"}
+                title={playing ? "Pause" : "Play"}
+                onClick={() => setPlaying(!playing)}
+              >
+                {playing ? <Pause /> : <Play />}
+              </Button>
+              <Button
+                variant="icon"
+                size="icon"
+                aria-label="Back 10 seconds"
+                title="Back 10 seconds"
+                onClick={() => setPosition((p) => Math.max(0, p - 10))}
+              >
+                <RotateCcw />
+              </Button>
+              <Button
+                variant="icon"
+                size="icon"
+                aria-label="Forward 10 seconds"
+                title="Forward 10 seconds"
+                onClick={() => setPosition((p) => Math.min(duration, p + 10))}
+              >
+                <RotateCw />
+              </Button>
+              <span aria-live="off">
+                {time(position)} / {time(duration)}
+              </span>
+              <Button
+                className="volume-icon"
+                variant="icon"
+                size="icon"
+                aria-label={volume ? "Mute" : "Unmute"}
+                title={volume ? "Mute" : "Unmute"}
+                onClick={() => setVolume((v) => (v ? 0 : 75))}
+              >
+                {volume ? <Volume2 /> : <VolumeX />}
+              </Button>
+              <input
+                className="volume-slider"
+                type="range"
+                min={0}
+                max={100}
+                value={volume}
+                aria-label="Volume"
+                onChange={(e) => setVolume(Number(e.target.value))}
+              />
+            </div>
+            <div className="control-group">
+              <select
+                aria-label="Video quality"
+                value={quality}
+                onChange={(e) => setQuality(e.target.value)}
+              >
+                <option>Auto</option>
+                <option>1080p</option>
+                <option>720p</option>
+              </select>
+              <Button
+                variant="icon"
+                size="icon"
+                aria-label="Subtitles"
+                title="Subtitles"
+                aria-pressed={subtitles}
+                className={subtitles ? "text-primary" : ""}
+                onClick={() => setSubtitles(!subtitles)}
+              >
+                <Subtitles />
+              </Button>
+              <select
+                aria-label="Audio track"
+                value={audio}
+                onChange={(e) => setAudio(e.target.value)}
+              >
+                <option>Hindi</option>
+                <option>English</option>
+              </select>
+              <Button
+                variant="icon"
+                size="icon"
+                title="Fullscreen"
+                aria-label="Fullscreen"
+                onClick={fullscreen}
+              >
+                <Maximize />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="player-info">
+        <div>
+          <div className="eyebrow">
+            {title.title} · {trailer ? "TRAILER" : `S${season} E${episode}`}
+          </div>
+          <h1 className="text-2xl font-serif mt-2 mb-2">
+            {trailer ? `${title.title} — Trailer` : ep.title}
+          </h1>
+          <p className="meta">{ep.synopsis}</p>
+          <p className="meta mt-3">Sample playback · No video stream connected</p>
+        </div>
+        {episode < 4 && !trailer && title.seasons > 0 && (
+          <Link
+            to="/watch/$id"
+            params={{ id }}
+            search={{ episode: episode + 1, season, trailer: false }}
+            className="next-episode"
+          >
+            <img src={title.image} alt="Next episode" />
+            <div>
+              <div className="eyebrow">UP NEXT</div>
+              <p className="text-xs mt-2">{episodesFor(id, season)[episode]?.title}</p>
+              <span className="meta">Play next episode →</span>
+            </div>
+          </Link>
+        )}
+      </div>
+      <div className="filter-row" role="tablist" aria-label="Player information">
+        {["Episodes", "Notes"].map((t) => (
+          <Button
+            variant="glass"
+            key={t}
+            className={tab === t ? "active" : ""}
+            role="tab"
+            aria-selected={tab === t}
+            onClick={() => setTab(t)}
+          >
+            {t}
+          </Button>
+        ))}
+      </div>
+      <div role="tabpanel">
+        {tab === "Episodes" ? (
+          title.seasons > 0 ? (
+            <EpisodeRows id={id} season={season} />
+          ) : (
+            <EmptyState
+              title="A complete film"
+              description="This title has no additional episodes."
+            />
+          )
+        ) : (
+          <NoteRail />
+        )}
+      </div>
+    </>
+  );
+}

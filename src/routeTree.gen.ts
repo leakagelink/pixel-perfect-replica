@@ -10,33 +10,219 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CollectionsRouteImport } from './routes/collections'
+import { Route as DocumentariesRouteImport } from './routes/documentaries'
+import { Route as FilmsRouteImport } from './routes/films'
+import { Route as MyListRouteImport } from './routes/my-list'
+import { Route as NotesRouteImport } from './routes/notes'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as SeriesRouteImport } from './routes/series'
+import { Route as ShortsRouteImport } from './routes/shorts'
+import { Route as NotesIdRouteImport } from './routes/notes_.$id'
+import { Route as SeriesIdRouteImport } from './routes/series_.$id'
+import { Route as TitleIdRouteImport } from './routes/title.$id'
+import { Route as WatchIdRouteImport } from './routes/watch.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionsRoute = CollectionsRouteImport.update({
+  id: '/collections',
+  path: '/collections',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentariesRoute = DocumentariesRouteImport.update({
+  id: '/documentaries',
+  path: '/documentaries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FilmsRoute = FilmsRouteImport.update({
+  id: '/films',
+  path: '/films',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyListRoute = MyListRouteImport.update({
+  id: '/my-list',
+  path: '/my-list',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesRoute = NotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeriesRoute = SeriesRouteImport.update({
+  id: '/series',
+  path: '/series',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShortsRoute = ShortsRouteImport.update({
+  id: '/shorts',
+  path: '/shorts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesIdRoute = NotesIdRouteImport.update({
+  id: '/notes_/$id',
+  path: '/notes/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeriesIdRoute = SeriesIdRouteImport.update({
+  id: '/series_/$id',
+  path: '/series/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TitleIdRoute = TitleIdRouteImport.update({
+  id: '/title/$id',
+  path: '/title/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WatchIdRoute = WatchIdRouteImport.update({
+  id: '/watch/$id',
+  path: '/watch/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/collections': typeof CollectionsRoute
+  '/documentaries': typeof DocumentariesRoute
+  '/films': typeof FilmsRoute
+  '/my-list': typeof MyListRoute
+  '/notes': typeof NotesRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/series': typeof SeriesRoute
+  '/shorts': typeof ShortsRoute
+  '/notes/$id': typeof NotesIdRoute
+  '/series/$id': typeof SeriesIdRoute
+  '/title/$id': typeof TitleIdRoute
+  '/watch/$id': typeof WatchIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/collections': typeof CollectionsRoute
+  '/documentaries': typeof DocumentariesRoute
+  '/films': typeof FilmsRoute
+  '/my-list': typeof MyListRoute
+  '/notes': typeof NotesRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/series': typeof SeriesRoute
+  '/shorts': typeof ShortsRoute
+  '/notes/$id': typeof NotesIdRoute
+  '/series/$id': typeof SeriesIdRoute
+  '/title/$id': typeof TitleIdRoute
+  '/watch/$id': typeof WatchIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/collections': typeof CollectionsRoute
+  '/documentaries': typeof DocumentariesRoute
+  '/films': typeof FilmsRoute
+  '/my-list': typeof MyListRoute
+  '/notes': typeof NotesRoute
+  '/profile': typeof ProfileRoute
+  '/search': typeof SearchRoute
+  '/series': typeof SeriesRoute
+  '/shorts': typeof ShortsRoute
+  '/notes_/$id': typeof NotesIdRoute
+  '/series_/$id': typeof SeriesIdRoute
+  '/title/$id': typeof TitleIdRoute
+  '/watch/$id': typeof WatchIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/collections'
+    | '/documentaries'
+    | '/films'
+    | '/my-list'
+    | '/notes'
+    | '/profile'
+    | '/search'
+    | '/series'
+    | '/shorts'
+    | '/notes/$id'
+    | '/series/$id'
+    | '/title/$id'
+    | '/watch/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/collections'
+    | '/documentaries'
+    | '/films'
+    | '/my-list'
+    | '/notes'
+    | '/profile'
+    | '/search'
+    | '/series'
+    | '/shorts'
+    | '/notes/$id'
+    | '/series/$id'
+    | '/title/$id'
+    | '/watch/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/collections'
+    | '/documentaries'
+    | '/films'
+    | '/my-list'
+    | '/notes'
+    | '/profile'
+    | '/search'
+    | '/series'
+    | '/shorts'
+    | '/notes_/$id'
+    | '/series_/$id'
+    | '/title/$id'
+    | '/watch/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  CollectionsRoute: typeof CollectionsRoute
+  DocumentariesRoute: typeof DocumentariesRoute
+  FilmsRoute: typeof FilmsRoute
+  MyListRoute: typeof MyListRoute
+  NotesRoute: typeof NotesRoute
+  ProfileRoute: typeof ProfileRoute
+  SearchRoute: typeof SearchRoute
+  SeriesRoute: typeof SeriesRoute
+  ShortsRoute: typeof ShortsRoute
+  NotesIdRoute: typeof NotesIdRoute
+  SeriesIdRoute: typeof SeriesIdRoute
+  TitleIdRoute: typeof TitleIdRoute
+  WatchIdRoute: typeof WatchIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +234,123 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collections': {
+      id: '/collections'
+      path: '/collections'
+      fullPath: '/collections'
+      preLoaderRoute: typeof CollectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentaries': {
+      id: '/documentaries'
+      path: '/documentaries'
+      fullPath: '/documentaries'
+      preLoaderRoute: typeof DocumentariesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/films': {
+      id: '/films'
+      path: '/films'
+      fullPath: '/films'
+      preLoaderRoute: typeof FilmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-list': {
+      id: '/my-list'
+      path: '/my-list'
+      fullPath: '/my-list'
+      preLoaderRoute: typeof MyListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes': {
+      id: '/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof NotesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/series': {
+      id: '/series'
+      path: '/series'
+      fullPath: '/series'
+      preLoaderRoute: typeof SeriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shorts': {
+      id: '/shorts'
+      path: '/shorts'
+      fullPath: '/shorts'
+      preLoaderRoute: typeof ShortsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notes_/$id': {
+      id: '/notes_/$id'
+      path: '/notes/$id'
+      fullPath: '/notes/$id'
+      preLoaderRoute: typeof NotesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/series_/$id': {
+      id: '/series_/$id'
+      path: '/series/$id'
+      fullPath: '/series/$id'
+      preLoaderRoute: typeof SeriesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/title/$id': {
+      id: '/title/$id'
+      path: '/title/$id'
+      fullPath: '/title/$id'
+      preLoaderRoute: typeof TitleIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/watch/$id': {
+      id: '/watch/$id'
+      path: '/watch/$id'
+      fullPath: '/watch/$id'
+      preLoaderRoute: typeof WatchIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  CollectionsRoute: CollectionsRoute,
+  DocumentariesRoute: DocumentariesRoute,
+  FilmsRoute: FilmsRoute,
+  MyListRoute: MyListRoute,
+  NotesRoute: NotesRoute,
+  ProfileRoute: ProfileRoute,
+  SearchRoute: SearchRoute,
+  SeriesRoute: SeriesRoute,
+  ShortsRoute: ShortsRoute,
+  NotesIdRoute: NotesIdRoute,
+  SeriesIdRoute: SeriesIdRoute,
+  TitleIdRoute: TitleIdRoute,
+  WatchIdRoute: WatchIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

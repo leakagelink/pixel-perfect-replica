@@ -25,7 +25,9 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Button asChild variant="cinema"><Link to="/">Back to KATHAYAN</Link></Button>
+          <Button asChild variant="cinema">
+            <Link to="/">Back to KATHAYAN</Link>
+          </Button>
         </div>
       </div>
     </div>
@@ -79,17 +81,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "KATHAYAN · Documentary, Knowledge, Bharat" },
-      { name: "description", content: "A sample documentary and knowledge streaming experience by Drishvaya Studios." },
+      {
+        name: "description",
+        content: "A sample documentary and knowledge streaming experience by Drishvaya Studios.",
+      },
       { name: "author", content: "Drishvaya Studios" },
       { property: "og:title", content: "KATHAYAN" },
-      { property: "og:description", content: "Documentary · Knowledge · Bharat. A cinematic sample catalogue." },
+      {
+        property: "og:description",
+        content: "Documentary · Knowledge · Bharat. A cinematic sample catalogue.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -123,7 +134,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <PrototypeProvider><AppShell><Outlet /></AppShell></PrototypeProvider>
+      <PrototypeProvider>
+        <AppShell>
+          <Outlet />
+        </AppShell>
+      </PrototypeProvider>
     </QueryClientProvider>
   );
 }

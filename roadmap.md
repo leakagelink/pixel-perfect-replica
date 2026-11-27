@@ -1,3 +1,4 @@
-- [ ] Create KATHAYAN visual system and documentary imagery.
-- [ ] Build all catalogue, detail, player, note, search, list, and profile pages.
-- [ ] Verify navigation, saving, player controls, billing dialog, and mobile layout.
+- [x] Create KATHAYAN visual system and documentary imagery.
+- [x] Build all catalogue, detail, player, note, search, list, and profile pages.
+- [x] Verify navigation, saving, player controls, billing dialog, and mobile layout.
+- [ ] Build and verify a responsive sample admin panel UI.
